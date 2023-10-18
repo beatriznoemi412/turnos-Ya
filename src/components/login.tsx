@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Box, Button, Flex, Heading, Input, Checkbox, Text } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { PrismaClient } from "@prisma/client";
 import Nav from "./nav";
 
+const prisma = new PrismaClient();
+
 const Login = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",  
     password: "",
@@ -63,11 +68,26 @@ const Login = () => {
   };
  
 
-  const handleLogin = () => {
-    // lógica de inicio de sesión
-    // y usar formData.email, formData.password, formData.rememberPassword
-    // para enviar los datos del formulario al servidor
+  const handleLogin = async () => {
+    try {
+      const user = await prisma.loginInfo.findUnique({
+        where: {
+          email: formData.email,
+        },
+      });
+
+      if (user && user.password === formData.password) {
+        console.log('Inicio de sesión exitoso');
+        navigate('/');
+      } else {
+        console.error('Credenciales incorrectas');
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
   };
+
+    
 
   return (
     <Box>

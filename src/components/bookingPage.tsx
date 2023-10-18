@@ -14,7 +14,7 @@ const fetchServices = async () => {
     { category: 'peluqueria', type: 'corte', schedule: '10:00 AM' },
     { category: 'peluqueria', type: 'color', schedule: '11:00 AM' },
     { category: 'manicura', type: 'uñas', schedule: '12:00 PM' },
-    // ... otros servicios
+    
   ];
 };
 

@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "lib": ["es2020", "dom", "dom.iterable"],
+    "module": "esnext",
     "skipLibCheck": true,
-    "types": ["geojson"],
+    "types": ["geojson", "node"],
+    
 
     /* Bundler mode */
     "moduleResolution": "node",
